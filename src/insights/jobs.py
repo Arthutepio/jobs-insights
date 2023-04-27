@@ -5,29 +5,17 @@ from typing import List, Dict
 
 @lru_cache
 def read(path: str) -> List[Dict]:
-    with open(path, "r", newline='') as file:
+    with open(path, "r", newline="") as file:
         reader_csv = csv.DictReader(file)
         list_dict = [row for row in reader_csv]
     return list_dict
-    raise NotImplementedError
 
 
 def get_unique_job_types(path: str) -> List[str]:
-    """Checks all different job types and returns a list of them
-
-    Must call `read`
-
-    Parameters
-    ----------
-    path : str
-        Must be passed to `read`
-
-    Returns
-    -------
-    list
-        List of unique job types
-    """
-    raise NotImplementedError
+    data_jobs_csv = read(path)
+    print("XXXXXXXXXXXXX", data_jobs_csv)
+    list_column_job_type = set([type["job_type"] for type in data_jobs_csv])
+    return list(list_column_job_type)
 
 
 def filter_by_job_type(jobs: List[Dict], job_type: str) -> List[Dict]:
