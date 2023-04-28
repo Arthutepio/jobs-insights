@@ -5,29 +5,21 @@ from src.insights.jobs import read
 def get_max_salary(path: str) -> int:
     data = read(path)
     max_salary = 0
-    exepition = ['', 'invalid']
+    exeption = ['', 'invalid']
     for salary in data:
-        if salary['max_salary'] not in exepition:
+        if salary['max_salary'] not in exeption:
             max_salary = max(max_salary, int(salary['max_salary']))
     return max_salary
 
 
 def get_min_salary(path: str) -> int:
-    """Get the minimum salary of all jobs
-
-    Must call `read`
-
-    Parameters
-    ----------
-    path : str
-        Must be passed to `read`
-
-    Returns
-    -------
-    int
-        The minimum salary paid out of all job opportunities
-    """
-    raise NotImplementedError
+    data = read(path)
+    min_salary = float("inf")
+    exeption = ['', 'invalid']
+    for salary in data:
+        if salary['min_salary'] not in exeption:
+            min_salary = min(min_salary, int(salary['min_salary']))
+    return min_salary
 
 
 def matches_salary_range(job: Dict, salary: Union[int, str]) -> bool:
