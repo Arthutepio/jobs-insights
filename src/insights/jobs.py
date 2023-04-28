@@ -14,7 +14,7 @@ def read(path: str) -> List[Dict]:
 def get_unique_job_types(path: str) -> List[str]:
     data_jobs_csv = read(path)
     list_column_job_type = set([type["job_type"] for type in data_jobs_csv])
-    return list(list_column_job_type)
+    return list_column_job_type
 
 
 def filter_by_job_type(jobs: List[Dict], job_type: str) -> List[Dict]:
